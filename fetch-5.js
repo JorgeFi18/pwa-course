@@ -1,14 +1,13 @@
 
-fetch('https://reqres.in/api/users/1')
+fetch('https://reqres.in/api/users/1000')
     .then( resp => {
-
-        resp.clone().json()
-            .then(user => {
-                console.log(user);
-            })
-
-        resp.json()
-            .then(user => {
-                console.log(user);
-            })
+        if (resp.ok) {
+            return resp.json();
+        } else {
+            throw new Error('User not found');
+        }
+    })
+    .then(console.log)
+    .catch( err => {
+        console.log('Error - ' +err)
     })
